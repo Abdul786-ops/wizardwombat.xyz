@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizard Wombat - Enchanted Gaming Experiences</title>
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-dark: #0d2601;
+            --forest-medium: #1e4d0b;
+            --forest-light: #2e7415;
+            --accent-gold: #d4af37;
+            --accent-silver: #c0c0c0;
+            --mystic-purple: #6a0dad;
+            --text-light: #f5f5f5;
+            --text-muted: #cccccc;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--forest-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(30, 77, 11, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 90% 70%, rgba(106, 13, 173, 0.15) 0%, transparent 25%);
+        }
+        
+        .disclaimer {
+            background-color: var(--forest-medium);
+            color: var(--accent-gold);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+            border-bottom: 1px solid var(--accent-gold);
+        }
+        
+        .navbar {
+            background-color: rgba(13, 38, 1, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--accent-gold);
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-gold) !important;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--forest-light), var(--accent-gold));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--forest-dark);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            color: var(--forest-dark);
+        }
+        
+        .page-content {
+            padding: 150px 0 80px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        .alert {
+            border-radius: 15px;
+            border: none;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            border-left: 5px solid var(--accent);
+        }
+        
+        .game-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .game-tab {
+            padding: 12px 25px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(106, 53, 238, 0.3);
+            font-weight: 600;
+        }
+        
+        .game-tab.active {
+            box-shadow: 0 10px 25px rgba(106, 53, 238, 0.3);
+            background: var(--gradient);
+        }
+        
+        .game-tab:hover:not(.active) {
+            background: rgba(106, 53, 238, 0.2);
+        }
+        
+        .game-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(106, 53, 238, 0.3);
+        }
+        
+        .game-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .game-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        .game-frame {
+            position: relative;
+            width: 100%;
+            height: 75vh; /* Changed from fixed height to viewport height */
+            min-height: 500px; /* Minimum height for smaller screens */
+            max-height: 700px; /* Maximum height for very large screens */
+            overflow: hidden;
+            border-radius: 10px;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Game canvas adjustments */
+        #canvas {
+           width: 100% !important;
+            height: 100% !important;
+            object-fit: contain; /* Ensures the game maintains aspect ratio */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+        
+        .content-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(106, 53, 238, 0.3);
+        }
+        
+        .content-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .responsible-entertainment {
+            background: rgba(26, 9, 51, 0.9);
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .responsible-entertainment h5 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+        
+        .responsible-logos {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .responsible-logos img {
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .responsible-logos img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(57, 212, 202, 0.3);
+        }
+        
+         footer {
+            background: var(--forest-dark);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .footer-links h6 {
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-gold);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        
+        /* Game controls overlay */
+        .game-controls {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            z-index: 10;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(106, 53, 238, 0.8);
+            transform: scale(1.1);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .game-frame {
+                height: 60vh; /* Adjust for mobile */
+                min-height: 400px;
+            }
+            
+            .responsible-logos {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .game-controls {
+                bottom: 10px;
+                right: 10px;
+            }
+            
+            .control-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .game-frame {
+                height: 50vh;
+                min-height: 350px;
+            }
+            
+            .game-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body ondragstart="return false;" ondrop="return false;">
+     <!-- Age Disclaimer -->
+    <div class="disclaimer">
+        <div class="container">
+            <p>18+ ONLY. Wizard Wombat provides entertainment experiences only — no real-money gambling or real-world prizes are offered.</p>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e4d0b' stroke='%23d4af37' stroke-width='2'/><path d='M30,40 C35,25 65,25 70,40 C70,55 50,70 50,70 C50,70 30,55 30,40' fill='%230d2601'/><circle cx='40' cy='35' r='5' fill='%23d4af37'/><circle cx='60' cy='35' r='5' fill='%23d4af37'/><path d='M45,50 C47.5,52 52.5,52 55,50' stroke='%23d4af37' stroke-width='2' fill='none'/><path d='M30,20 C40,10 60,10 70,20' stroke='%236a0dad' stroke-width='4' fill='none'/></svg>" alt="Wizard Wombat Logo">
+                WizardWombat.xyz
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="play.html">Experiences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="disclaimer.html">Disclaimer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="terms.html">Terms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="privacy.html">Privacy</a></li>
+                </ul>
+                <a href="play.html" class="btn btn-primary ms-lg-3">Explore Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+   <div class="page-content">
+    <div class="container">
+        <h2 class="section-title">Step Into the World of WizardWombat.xyz</h2>
+
+        <div class="alert">
+            <i class="fas fa-hat-wizard"></i>
+            <strong>Begin Your Journey:</strong> WizardWombat.xyz invites you to explore a realm of thrilling challenges and captivating adventures designed to spark curiosity and excitement.
+        </div>
+
+        <div class="game-tabs">
+            <div class="game-tab active" data-game="moles-quest">Wombat's Quest</div>
+            <div class="game-tab" data-game="ramses-riches">Treasures of Ramses</div>
+            <div class="game-tab" data-game="pattern-explorer">Puzzle Realms</div>
+        </div>
+
+        <!-- Ramses Riches Game -->
+        <div class="game-container" id="ramses-riches-game">
+            <div class="game-info">
+                <h3 class="game-title">Treasures of Ramses</h3>
+                <div class="game-stats">
+                    <span class="small"><i class="fas fa-users"></i> 12,480 Adventurers</span>
+                </div>
+            </div>
+
+            <p class="game-description">
+                Venture back to the golden age of pharaohs in <strong>Treasures of Ramses</strong>. Unveil lost relics, activate hidden powers, and uncover secrets buried beneath the sands of time.
+            </p>
+
+            <div class="game-frame">
+                <canvas id="canvas" class="ani_hack"></canvas>
+            </div>
+
+            <div class="mt-3 text-center">
+                <p class="small">
+                    WizardWombat.xyz blends ancient wonder with interactive play, bringing history to life in a magical way.
+                </p>
+            </div>
+        </div>
+
+        <!-- Wombat's Quest Game -->
+        <div class="game-container" id="moles-quest-game" style="display:none;">
+            <div class="game-info">
+                <h3 class="game-title">Wombat's Quest</h3>
+                <div class="game-stats">
+                    <span class="small"><i class="fas fa-users"></i> 15,320 Explorers</span>
+                </div>
+            </div>
+
+            <p class="game-description">
+                Team up with Wizard Wombat in <strong>Wombat's Quest</strong> as you uncover enchanted pathways, solve clever puzzles, and collect rare treasures along the way.
+            </p>
+
+            <div class="game-frame">
+                <div style="color: white; text-align: center; padding: 50px;">
+                    <i class="fas fa-dungeon" style="font-size: 60px; margin-bottom: 20px; color: #39d4ca;"></i>
+                    <h4>Wombat's Quest</h4>
+                    <p>Coming soon! Prepare for a quest full of hidden mysteries and magical surprises.</p>
+                    <button class="btn btn-primary mt-3">Notify Me</button>
+                </div>
+            </div>
+
+            <div class="mt-3 text-center">
+                <p class="small">
+                    Exclusive to WizardWombat.xyz, this adventure promises endless fun and challenging discoveries.
+                </p>
+            </div>
+        </div>
+
+        <!-- Puzzle Realms Game -->
+        <div class="game-container" id="pattern-explorer-game" style="display:none;">
+            <div class="game-info">
+                <h3 class="game-title">Puzzle Realms</h3>
+                <div class="game-stats">
+                    <span class="small"><i class="fas fa-users"></i> 8,240 Puzzle Solvers</span>
+                </div>
+            </div>
+
+            <p class="game-description">
+                Enter <strong>Puzzle Realms</strong>, where strategy and imagination meet. Unlock challenging puzzles, reveal hidden designs, and conquer mind-bending obstacles.
+            </p>
+
+            <div class="game-frame">
+                <div style="color: white; text-align: center; padding: 50px;">
+                    <i class="fas fa-brain" style="font-size: 60px; margin-bottom: 20px; color: #ff5e94;"></i>
+                    <h4>Puzzle Realms</h4>
+                    <p>Launching soon! Train your mind and conquer intricate puzzles like never before.</p>
+                    <button class="btn btn-primary mt-3">Notify Me</button>
+                </div>
+            </div>
+
+            <div class="mt-3 text-center">
+                <p class="small">
+                    WizardWombat.xyz combines brainpower and creativity to craft the ultimate puzzle adventure.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3>Why Play on WizardWombat.xyz?</h3>
+            <p>WizardWombat.xyz delivers engaging, skill-building games that are both fun and rewarding for curious minds everywhere.</p><br>
+            <ul>
+                <li><i class="fas fa-rocket"></i> Instant play—no downloads, no hassle, fully optimized for all devices</li>
+                <li><i class="fas fa-trophy"></i> Achievements and leaderboards to keep your competitive spirit alive</li>
+                <li><i class="fas fa-brain"></i> Boost memory, focus, and problem-solving with exciting challenges</li>
+                <li><i class="fas fa-globe"></i> Join a global community of gamers and puzzle enthusiasts</li>
+                <li><i class="fas fa-shield-alt"></i> Secure, private, and designed for safe entertainment</li>
+            </ul>
+        </div>
+
+        <div class="content-card" style="text-align: center;">
+            <h3>About WizardWombat.xyz</h3>
+            <p>At WizardWombat.xyz, we reimagine digital entertainment by blending strategy, exploration, and creativity into unforgettable adventures.</p>
+            <p>Our mission is to create immersive, user-friendly experiences that captivate players while encouraging imagination and problem-solving.</p>
+            <p>Every game is designed to inspire curiosity, reward exploration, and deliver a unique sense of discovery to players of all ages.</p>
+        </div>
+    </div>
+    </div>
+
+
+   <!-- Responsible Entertainment -->
+    <section class="responsible-entertainment">
+        <div class="container">
+            <h5>Responsible Entertainment</h5>
+            <div class="responsible-logos">
+                <div class="logo-item">
+                    <i class="fas fa-user-shield fa-2x" style="color: #1e4d0b;"></i>
+                </div>
+                <div class="logo-item">
+                    <i class="fas fa-clock fa-2x" style="color: #1e4d0b;"></i>
+                </div>
+                <div class="logo-item">
+                    <i class="fas fa-heart fa-2x" style="color: #1e4d0b;"></i>
+                </div>
+            </div>
+            <p class="mt-4">We promote responsible entertainment and encourage our users to take breaks and enjoy our experiences in moderation.</p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="navbar-brand">WizardWombat.xyz</h4>
+                    <p class="mt-3">A magical entertainment experience designed for fun and adventure.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <div class="footer-links">
+                        <h6>Navigation</h6>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="play.html">Experiences</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <div class="footer-links">
+                        <h6>Legal</h6>
+                        <ul>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="responsible.html">Responsible Entertainment</a></li>
+                            <li><a href="mailto:support@wizardwombat.xyz">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <div class="footer-links">
+                        <h6>Contact & Support</h6>
+                        <p>Email: <a href="mailto:support@wizardwombat.xyz">support@wizardwombat.xyz</a></p>
+                        <div class="social-icons mt-3">
+                            <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                <p>For adults 18+ only. WizardWombat.xyz provides entertainment experiences only — no real-money gambling or real-world prizes are offered.</p>
+                <p>© 2025 WizardWombat.xyz. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Game JS files for Ramses Riches -->
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/createjs.min.js"></script>
+        <script type="text/javascript" src="js/platform.js"></script>
+        <script type="text/javascript" src="js/ios_fullscreen.js"></script>
+        <script type="text/javascript" src="js/howler.min.js"></script>
+        <script type="text/javascript" src="js/screenfull.min.js"></script>
+        <script type="text/javascript" src="js/ctl_utils.js"></script>
+        <script type="text/javascript" src="js/sprite_lib.js"></script>
+        <script type="text/javascript" src="js/settings.js"></script>
+        <script type="text/javascript" src="js/CSlotSettings.js"></script>
+        <script type="text/javascript" src="js/CLang.js"></script>
+        <script type="text/javascript" src="js/CPreloader.js"></script>
+        <script type="text/javascript" src="js/CMain.js"></script>
+        <script type="text/javascript" src="js/CTextButton.js"></script>
+        <script type="text/javascript" src="js/CGfxButton.js"></script>
+        <script type="text/javascript" src="js/CToggle.js"></script>
+        <script type="text/javascript" src="js/CBetBut.js"></script>
+        <script type="text/javascript" src="js/CMenu.js"></script>
+        <script type="text/javascript" src="js/CGame.js"></script>
+        <script type="text/javascript" src="js/CReelColumn.js"></script>
+        <script type="text/javascript" src="js/CInterface.js"></script>
+        <script type="text/javascript" src="js/CPayTablePanel.js"></script>
+        <script type="text/javascript" src="js/CStaticSymbolCell.js"></script>
+        <script type="text/javascript" src="js/CTweenController.js"></script>
+        <script type="text/javascript" src="js/CBonusPanel.js"></script>
+        <script type="text/javascript" src="js/CScoreText.js"></script>
+        <script type="text/javascript" src="js/CCreditsPanel.js"></script>
+        <script type="text/javascript" src="js/CRechargePanel.js"></script>
+        <script type="text/javascript" src="js/CCTLText.js"></script>
+      <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(26, 9, 51, 0.98)';
+                header.style.padding = '10px 0';
+            } else {
+                header.style.backgroundColor = 'rgba(26, 9, 51, 0.95)';
+                header.style.padding = '15px 0';
+            }
+        });
+
+        // Game tab functionality
+        const gameTabs = document.querySelectorAll('.game-tab');
+        const gameContainers = document.querySelectorAll('.game-container');
+        
+        gameTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                gameTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all game containers
+                gameContainers.forEach(container => {
+                    container.style.display = 'none';
+                });
+                
+                // Show the selected game container
+                const gameId = tab.getAttribute('data-game');
+                const selectedGame = document.getElementById(`${gameId}-game`);
+                if (selectedGame) {
+                    selectedGame.style.display = 'block';
+                }
+            });
+        });
+
+        // Initialize the Ramses Riches game
+        function initRamsesGame() {
+            try {
+                var oMain = new CMain({
+                    win_occurrence:30,        //WIN PERCENTAGE.SET A VALUE FROM 0 TO 100.
+                    slot_cash: 100,          //THIS IS THE CURRENT SLOT CASH AMOUNT. THE GAME CHECKS IF THERE IS AVAILABLE CASH FOR WINNINGS.
+                    bonus_occurrence:15,      //SET BONUS OCCURRENCE PERCENTAGE IF PLAYER GET A WIN. SET A VALUE FROM 0 TO 100. (IF 100%, PLAYER GET A BONUS EVERYTIME THERE IS A WIN).
+                    min_reel_loop:1,          //NUMBER OF REEL LOOPS BEFORE SLOT STOPS  
+                    reel_delay: 0,            //NUMBER OF FRAMES TO DELAY THE REELS THAT START AFTER THE FIRST ONE
+                    time_show_win:2000,       //DURATION IN MILLISECONDS OF THE WINNING COMBO SHOWING
+                    time_show_all_wins: 2000, //DURATION IN MILLISECONDS OF ALL WINNING COMBO
+                    money:100,               //STARING CREDIT FOR THE USER
+                    min_bet:0.05,             //MINIMUM COIN FOR BET
+                    max_bet: 0.5,             //MAXIMUM COIN FOR BET
+                    max_hold:3,               //MAXIMUM NUMBER OF POSSIBLE HOLD ON REELS
+                    perc_win_bonus_prize_1: 50,       //OCCURENCE PERCENTAGE FOR PRIZE 1 IN BONUS
+                    perc_win_bonus_prize_2: 35,       //OCCURENCE PERCENTAGE FOR PRIZE 2 IN BONUS
+                    perc_win_bonus_prize_3: 15,       //OCCURENCE PERCENTAGE FOR PRIZE 3 IN BONUS
+                    /***********PAYTABLE********************/
+                    //EACH SYMBOL PAYTABLE HAS 5 VALUES THAT INDICATES THE MULTIPLIER FOR X1,X2,X3,X4 OR X5 COMBOS
+                    paytable_symbol_1: [0,0,150,250,500], //PAYTABLE FOR SYMBOL 1
+                    paytable_symbol_2: [0,0,100,150,200], //PAYTABLE FOR SYMBOL 2
+                    paytable_symbol_3: [0,0,50,100,150],  //PAYTABLE FOR SYMBOL 3
+                    paytable_symbol_4: [0,10,25,50,100],  //PAYTABLE FOR SYMBOL 4
+                    paytable_symbol_5: [0,10,25,50,100],  //PAYTABLE FOR SYMBOL 5
+                    paytable_symbol_6: [0,5,15,25,50],    //PAYTABLE FOR SYMBOL 6
+                    paytable_symbol_7: [0,2,10,20,35],    //PAYTABLE FOR SYMBOL 7
+                    paytable_symbol_8: [0,1,5,10,15],     //PAYTABLE FOR SYMBOL 8
+                    /*************************************/
+                    fullscreen:true,                       //SET THIS TO FALSE IF YOU DON'T WANT TO SHOW FULLSCREEN BUTTON
+                    check_orientation:true,                //SET TO FALSE IF YOU DON'T WANT TO SHOW ORIENTATION ALERT ON MOBILE DEVICES
+                    show_credits:true,                     //ENABLE/DISABLE CREDITS BUTTON IN THE MAIN SCREEN
+                    audio_enable_on_startup:false, //ENABLE/DISABLE AUDIO WHEN GAME STARTS 
+                    num_spin_ads_showing:10     //NUMBER OF SPIN TO COMPLETE, BEFORE TRIGGERING AD SHOWING.
+                });
+                
+                $(oMain).on("recharge", function (evt) {
+                    //INSERT HERE YOUR RECHARGE SCRIPT THAT RETURN MONEY TO RECHARGE
+                    var iMoney = 100;
+                    if(s_oGame !== null){
+                        s_oGame.setMoney(iMoney);
+                    }
+                });
+                
+                $(oMain).on("start_session", function (evt) {
+                    // Session start code
+                });
+
+                $(oMain).on("end_session", function (evt) {
+                    // Session end code
+                });
+                
+                $(oMain).on("bet_placed", function (evt, oBetInfo) {
+                    var iBet = oBetInfo.bet;
+                    var iTotBet = oBetInfo.tot_bet;
+                    // Bet placement code
+                });
+                
+                $(oMain).on("bonus_start", function (evt) {
+                    // Bonus start code
+                });
+
+                $(oMain).on("bonus_end", function (evt, iMoney) {
+                    // Bonus end code
+                });
+                    
+                $(oMain).on("save_score", function (evt, iMoney) {
+                    // Score saving code
+                });
+
+                $(oMain).on("show_interlevel_ad", function (evt) {
+                    // Interlevel ad code
+                });
+
+                $(oMain).on("share_event", function (evt, oData) {
+                    // Share event code
+                });
+                     
+                if (isIOS()) {
+                    setTimeout(function () {
+                        sizeHandler();
+                    }, 200);
+                } else {
+                    sizeHandler();
+                }
+                
+            } catch (error) {
+                console.error('Error initializing game:', error);
+                document.getElementById('ramses-riches-game').innerHTML = 
+                    '<div style="color: #F5F5F5; text-align: center; padding: 20px;">' +
+                    '<h3>Game Loading Error</h3>' +
+                    '<p>Sorry, there was an issue loading the game. Please refresh the page and try again.</p>' +
+                    '<button class="btn btn-primary mt-3" onclick="window.location.reload()">Reload Game</button>' +
+                    '</div>';
+            }
+        }
+
+        // Wait for the DOM to be fully loaded before initializing the game
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the game with a small delay to ensure all resources are loaded
+            setTimeout(initRamsesGame, 500);
+        });
+    </script>
+</body>
+</html>

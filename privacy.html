@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Wizard Wombat</title>
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-dark: #0d2601;
+            --forest-medium: #1e4d0b;
+            --forest-light: #2e7415;
+            --accent-gold: #d4af37;
+            --accent-silver: #c0c0c0;
+            --mystic-purple: #6a0dad;
+            --text-light: #f5f5f5;
+            --text-muted: #cccccc;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--forest-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(30, 77, 11, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 90% 70%, rgba(106, 13, 173, 0.15) 0%, transparent 25%);
+        }
+        
+        .disclaimer {
+            background-color: var(--forest-medium);
+            color: var(--accent-gold);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+            border-bottom: 1px solid var(--accent-gold);
+        }
+        
+        .navbar {
+            background-color: rgba(13, 38, 1, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--accent-gold);
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-gold) !important;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--forest-light), var(--accent-gold));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--forest-dark);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            color: var(--forest-dark);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-medium) 100%);
+            padding: 120px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 75% 60%, rgba(106, 13, 173, 0.1) 0%, transparent 25%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-muted);
+        }
+        
+     
+        
+        .game-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--forest-light), var(--mystic-purple));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .game-icon i {
+            font-size: 36px;
+            color: var(--text-light);
+        }
+        
+        .game-card:hover .game-icon {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(106, 13, 173, 0.4);
+        }
+        
+        .section-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            color: var(--accent-gold);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--forest-light), var(--accent-gold));
+            border-radius: 2px;
+        }
+        
+        .about-section, .features-section, .faq-section {
+            padding: 100px 0;
+        }
+        
+        .about-section {
+            background-color: rgba(30, 77, 11, 0.3);
+        }
+        
+        .features-section {
+            background: linear-gradient(to bottom, var(--forest-dark), var(--forest-medium));
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            
+    
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .faq-section {
+            background-color: rgba(30, 77, 11, 0.4);
+        }
+        
+        .accordion-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .accordion-button {
+            background: transparent;
+            color: var(--text-light);
+            font-weight: 600;
+            padding: 20px;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--accent-gold);
+        }
+        
+        .accordion-body {
+            background: rgba(13, 38, 1, 0.5);
+            color: var(--text-muted);
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--forest-medium) 0%, var(--forest-dark) 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .responsible-entertainment {
+            background: rgba(13, 38, 1, 0.9);
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .responsible-entertainment h5 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--accent-gold);
+        }
+        
+        .responsible-logos {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .responsible-logos .logo-item {
+            width: 100px;
+            height: 60px;
+            background: var(--text-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .responsible-logos .logo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        footer {
+            background: var(--forest-dark);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .footer-links h6 {
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-gold);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .responsible-logos {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Age Disclaimer -->
+    <div class="disclaimer">
+        <div class="container">
+            <p>18+ ONLY. Wizard Wombat provides entertainment experiences only — no real-money gambling or real-world prizes are offered.</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+   <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e4d0b' stroke='%23d4af37' stroke-width='2'/><path d='M30,40 C35,25 65,25 70,40 C70,55 50,70 50,70 C50,70 30,55 30,40' fill='%230d2601'/><circle cx='40' cy='35' r='5' fill='%23d4af37'/><circle cx='60' cy='35' r='5' fill='%23d4af37'/><path d='M45,50 C47.5,52 52.5,52 55,50' stroke='%23d4af37' stroke-width='2' fill='none'/><path d='M30,20 C40,10 60,10 70,20' stroke='%236a0dad' stroke-width='4' fill='none'/></svg>" alt="Wizard Wombat Logo">
+                WizardWombat.xyz
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="play.html">Experiences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="disclaimer.html">Disclaimer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="terms.html">Terms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="privacy.html">Privacy</a></li>
+                </ul>
+                <a href="play.html" class="btn btn-primary ms-lg-3">Explore Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Privacy Hero -->
+    <section class="hero-section text-center">
+        <div class="container hero-content">
+            <h1 class="hero-title">Privacy Policy</h1>
+            <p class="hero-subtitle">Your privacy matters to us. Read our policy below.</p>
+        </div>
+    </section>
+
+    <!-- Privacy Content -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">Our Commitment to Privacy</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="feature-card mb-4">
+                        <h4>Information We Collect</h4>
+                        <p>We may collect basic information such as your email address, preferences, and device information to improve our services and provide a better user experience.</p>
+                    </div>
+                    <div class="feature-card mb-4">
+                        <h4>How We Use Your Information</h4>
+                        <p>Collected information is used solely for service improvements, customer support, and to ensure a seamless user experience. We do not sell or share your data with third parties for marketing purposes.</p>
+                    </div>
+                    <div class="feature-card mb-4">
+                        <h4>Cookies & Analytics</h4>
+                        <p>We may use cookies to analyze user behavior and improve platform performance. You can manage your cookie preferences through your browser settings.</p>
+                    </div>
+                    <div class="feature-card mb-4">
+                        <h4>Third-Party Services</h4>
+                        <p>Our website may contain links to external services. We are not responsible for the privacy practices or content of third-party websites.</p>
+                    </div>
+                    <div class="feature-card mb-4">
+                        <h4>Data Security</h4>
+                        <p>We take reasonable measures to protect your personal information. However, no method of transmission over the Internet is completely secure.</p>
+                    </div>
+                    <div class="feature-card mb-4">
+                        <h4>Children's Privacy</h4>
+                        <p>Our services are not intended for individuals under 18 years of age. We do not knowingly collect information from minors.</p>
+                    </div>
+                    <div class="feature-card mb-4">
+                        <h4>Changes to This Policy</h4>
+                        <p>We may update this Privacy Policy periodically. Continued use of our platform constitutes acceptance of any changes.</p>
+                    </div>
+                    <div class="feature-card mb-4">
+                        <h4>Contact Us</h4>
+                        <p>If you have any questions about our Privacy Policy, please contact us at <a href="mailto:support@wizardwombat.xyz">support@wizardwombat.xyz</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Responsible Entertainment -->
+    <section class="responsible-entertainment">
+        <div class="container">
+            <h5>Responsible Entertainment</h5>
+            <div class="responsible-logos">
+                <div class="logo-item">
+                    <i class="fas fa-user-shield fa-2x" style="color: #1e4d0b;"></i>
+                </div>
+                <div class="logo-item">
+                    <i class="fas fa-clock fa-2x" style="color: #1e4d0b;"></i>
+                </div>
+                <div class="logo-item">
+                    <i class="fas fa-heart fa-2x" style="color: #1e4d0b;"></i>
+                </div>
+            </div>
+            <p class="mt-4">We promote responsible entertainment and encourage our users to enjoy our experiences in moderation.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="navbar-brand">WizardWombat.xyz</h4>
+                    <p class="mt-3">A magical entertainment experience designed for fun and adventure.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <div class="footer-links">
+                        <h6>Navigation</h6>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="play.html">Experiences</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <div class="footer-links">
+                        <h6>Legal</h6>
+                        <ul>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="responsible.html">Responsible Entertainment</a></li>
+                            <li><a href="mailto:support@wizardwombat.xyz">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <div class="footer-links">
+                        <h6>Contact & Support</h6>
+                        <p>Email: <a href="mailto:support@wizardwombat.xyz">support@wizardwombat.xyz</a></p>
+                        <div class="social-icons mt-3">
+                            <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                <p>For adults 18+ only. WizardWombat.xyz provides entertainment experiences only — no real-money gambling or real-world prizes are offered.</p>
+                <p>© 2025 WizardWombat.xyz. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

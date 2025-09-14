@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizard Wombat - Enchanted Gaming Experiences</title>
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-dark: #0d2601;
+            --forest-medium: #1e4d0b;
+            --forest-light: #2e7415;
+            --accent-gold: #d4af37;
+            --accent-silver: #c0c0c0;
+            --mystic-purple: #6a0dad;
+            --text-light: #f5f5f5;
+            --text-muted: #cccccc;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--forest-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(30, 77, 11, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 90% 70%, rgba(106, 13, 173, 0.15) 0%, transparent 25%);
+        }
+        
+        .disclaimer {
+            background-color: var(--forest-medium);
+            color: var(--accent-gold);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+            border-bottom: 1px solid var(--accent-gold);
+        }
+        
+        .navbar {
+            background-color: rgba(13, 38, 1, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--accent-gold);
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-gold) !important;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--forest-light), var(--accent-gold));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--forest-dark);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            color: var(--forest-dark);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-medium) 100%);
+            padding: 120px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 75% 60%, rgba(106, 13, 173, 0.1) 0%, transparent 25%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-muted);
+        }
+        
+     
+        
+        .game-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--forest-light), var(--mystic-purple));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .game-icon i {
+            font-size: 36px;
+            color: var(--text-light);
+        }
+        
+        .game-card:hover .game-icon {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(106, 13, 173, 0.4);
+        }
+        
+        .section-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            color: var(--accent-gold);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--forest-light), var(--accent-gold));
+            border-radius: 2px;
+        }
+        
+        .about-section, .features-section, .faq-section {
+            padding: 100px 0;
+        }
+        
+        .about-section {
+            background-color: rgba(30, 77, 11, 0.3);
+        }
+        
+        .features-section {
+            background: linear-gradient(to bottom, var(--forest-dark), var(--forest-medium));
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            height: 100%;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .faq-section {
+            background-color: rgba(30, 77, 11, 0.4);
+        }
+        
+        .accordion-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .accordion-button {
+            background: transparent;
+            color: var(--text-light);
+            font-weight: 600;
+            padding: 20px;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--accent-gold);
+        }
+        
+        .accordion-body {
+            background: rgba(13, 38, 1, 0.5);
+            color: var(--text-muted);
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--forest-medium) 0%, var(--forest-dark) 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .responsible-entertainment {
+            background: rgba(13, 38, 1, 0.9);
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .responsible-entertainment h5 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--accent-gold);
+        }
+        
+        .responsible-logos {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .responsible-logos .logo-item {
+            width: 100px;
+            height: 60px;
+            background: var(--text-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .responsible-logos .logo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        footer {
+            background: var(--forest-dark);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .footer-links h6 {
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-gold);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .responsible-logos {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Age Disclaimer -->
+    <div class="disclaimer">
+        <div class="container">
+            <p>18+ ONLY. Wizard Wombat provides entertainment experiences only — no real-money gambling or real-world prizes are offered.</p>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e4d0b' stroke='%23d4af37' stroke-width='2'/><path d='M30,40 C35,25 65,25 70,40 C70,55 50,70 50,70 C50,70 30,55 30,40' fill='%230d2601'/><circle cx='40' cy='35' r='5' fill='%23d4af37'/><circle cx='60' cy='35' r='5' fill='%23d4af37'/><path d='M45,50 C47.5,52 52.5,52 55,50' stroke='%23d4af37' stroke-width='2' fill='none'/><path d='M30,20 C40,10 60,10 70,20' stroke='%236a0dad' stroke-width='4' fill='none'/></svg>" alt="Wizard Wombat Logo">
+                WizardWombat.xyz
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="play.html">Experiences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="disclaimer.html">Disclaimer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="terms.html">Terms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="privacy.html">Privacy</a></li>
+                </ul>
+                <a href="play.html" class="btn btn-primary ms-lg-3">Explore Now</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">Embark on a Mystical Journey</h1>
+                    <p class="hero-subtitle">Discover enchanting worlds and magical adventures with Wizard Wombat. Experience unique entertainment with captivating gameplay and mystical charm.</p>
+                    <a href="play.html" class="btn btn-primary">Begin Adventure</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><circle cx='200' cy='200' r='190' fill='%231e4d0b' stroke='%23d4af37' stroke-width='2'/><circle cx='200' cy='200' r='170' fill='%230d2601' opacity='0.8'/><path d='M150,160 C155,140 245,140 250,160 C250,190 200,220 200,220 C200,220 150,190 150,160' fill='%231e4d0b'/><circle cx='170' cy='150' r='15' fill='%23d4af37'/><circle cx='230' cy='150' r='15' fill='%23d4af37'/><circle cx='170' cy='150' r='5' fill='%230d2601'/><circle cx='230' cy='150' r='5' fill='%230d2601'/><path d='M180,190 C190,195 210,195 220,190' stroke='%23d4af37' stroke-width='3' fill='none'/><path d='M120,120 C160,90 240,90 280,120' stroke='%236a0dad' stroke-width='8' fill='none'/><path d='M100,280 C150,310 250,310 300,280' stroke='%23d4af37' stroke-width='6' fill='none'/></svg>" alt="Wizard Wombat Character" class="img-fluid floating" style="max-width: 80%;">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Games Section -->
+    <section id="games" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Enchanted Experiences</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="game-card text-center">
+                        <div class="game-icon">
+                            <i class="fas fa-hat-wizard"></i>
+                        </div>
+                        <h4>Wombat's Wisdom</h4>
+                        <p>Test your knowledge in this mystical trivia challenge filled with magical questions and enchanting rewards.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="game-card text-center">
+                        <div class="game-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <h4>Forest Quest</h4>
+                        <p>Navigate through magical forests, solve nature's puzzles, and discover hidden treasures on your journey.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="game-card text-center">
+                        <div class="game-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h4>Crystal Collector</h4>
+                        <p>Match colorful magical crystals in this engaging puzzle adventure with increasing challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About Wizard Wombat</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 400'><rect width='500' height='400' rx='20' fill='%231e4d0b'/><circle cx='250' cy='120' r='80' fill='%230d2601'/><path d='M200,100 C210,80 290,80 300,100 C300,140 250,170 250,170 C250,170 200,140 200,100' fill='%231e4d0b'/><circle cx='220' cy='90' r='15' fill='%23d4af37'/><circle cx='280' cy='90' r='15' fill='%23d4af37'/><circle cx='220' cy='90' r='5' fill='%230d2601'/><circle cx='280' cy='90' r='5' fill='%230d2601'/><path d='M230,130 C240,135 260,135 270,130' stroke='%23d4af37' stroke-width='3' fill='none'/><path d='M150,200 C200,230 300,230 350,200' stroke='%236a0dad' stroke-width='8' fill='none'/><rect x='100' y='250' width='300' height='100' rx='15' fill='%23d4af37' opacity='0.7'/><text x='250' y='310' font-family='Arial' font-size='24' fill='%230d2601' text-anchor='middle' font-weight='bold'>WizardWombat.xyz</text></svg>" alt="About Wizard Wombat" class="img-fluid rounded-3">
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="mb-4">A Magical World Awaits</h3>
+                    <p>Wizard Wombat creates enchanting entertainment experiences that transport you to mystical realms. Our adventures combine strategy, puzzle-solving, and exploration in a family-friendly format.</p>
+                    <p>We believe in the power of imagination and creativity. Each experience is carefully designed to engage your mind and provide hours of wholesome entertainment without any real-money gambling elements.</p>
+                    <p>Our team of designers and developers are passionate about creating unique digital experiences that delight and challenge players of all ages (18+).</p>
+                    <a href="#features" class="btn btn-primary mt-3">Discover Features</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Magical Features</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="game-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h4>Enchanting Visuals</h4>
+                        <p>Immerse yourself in beautifully crafted mystical worlds with vibrant colors and magical environments.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="game-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h4>Engaging Gameplay</h4>
+                        <p>Enjoy intuitive controls and mechanics that make every magical moment enjoyable and accessible.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="game-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h4>Rewarding Achievements</h4>
+                        <p>Unlock magical achievements, collect mystical rewards, and track your progress as you advance.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="game-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Friendly Competition</h4>
+                        <p>Connect with fellow adventurers, share accomplishments, and enjoy friendly challenges.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="game-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4>Regular Updates</h4>
+                        <p>Experience new magical content regularly with updates that add features and expand worlds.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="game-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Safe Environment</h4>
+                        <p>Play in a secure, responsibly designed environment focused on entertainment and fun.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            What is Wizard Wombat?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Wizard Wombat is an entertainment platform offering magical gaming experiences. Our adventures focus on puzzle-solving, strategy, and fun without any real-money gambling elements.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Is Wizard Wombat free to play?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, all our magical experiences are free to enjoy. We focus on providing entertainment value without any cost to our users.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Are there any real-money prizes?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            No, Wizard Wombat does not offer any real-money gambling or real-world prizes. We provide entertainment experiences only for users 18 years and older.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Do I need to create an account?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            You can enjoy our magical experiences without creating an account. However, creating an account allows you to save your progress and access additional features.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            Is my personal information safe?
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, we take privacy seriously. We only collect necessary information and never share it with third parties without your consent. Please see our Privacy Policy for more details.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container text-center">
+            <h2 class="section-title">Ready for Adventure?</h2>
+            <p class="lead mb-4">Join the magical journey and experience the enchantment today!</p>
+            <a href="play.html" class="btn btn-primary btn-lg">Begin Magical Journey</a>
+        </div>
+    </section>
+    
+    <!-- Responsible Entertainment -->
+    <section class="responsible-entertainment">
+        <div class="container">
+            <h5>Responsible Entertainment</h5>
+            <div class="responsible-logos">
+                <div class="logo-item">
+                    <i class="fas fa-user-shield fa-2x" style="color: #1e4d0b;"></i>
+                </div>
+                <div class="logo-item">
+                    <i class="fas fa-clock fa-2x" style="color: #1e4d0b;"></i>
+                </div>
+                <div class="logo-item">
+                    <i class="fas fa-heart fa-2x" style="color: #1e4d0b;"></i>
+                </div>
+            </div>
+            <p class="mt-4">We promote responsible entertainment and encourage our users to take breaks and enjoy our experiences in moderation.</p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="navbar-brand">WizardWombat.xyz</h4>
+                    <p class="mt-3">A magical entertainment experience designed for fun and adventure.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <div class="footer-links">
+                        <h6>Navigation</h6>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="play.html">Experiences</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <div class="footer-links">
+                        <h6>Legal</h6>
+                        <ul>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="responsible.html">Responsible Entertainment</a></li>
+                            <li><a href="mailto:support@wizardwombat.xyz">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <div class="footer-links">
+                        <h6>Contact & Support</h6>
+                        <p>Email: <a href="mailto:support@wizardwombat.xyz">support@wizardwombat.xyz</a></p>
+                        <div class="social-icons mt-3">
+                            <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                <p>For adults 18+ only. WizardWombat.xyz provides entertainment experiences only — no real-money gambling or real-world prizes are offered.</p>
+                <p>© 2025 WizardWombat.xyz. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(13, 38, 1, 0.98)';
+                navbar.style.padding = '10px 0';
+            } else {
+                navbar.style.backgroundColor = 'rgba(13, 38, 1, 0.95)';
+                navbar.style.padding = '15px 0';
+            }
+        });
+        
+        // Add animation to elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Set initial state for animated elements
+            document.querySelectorAll('.game-card, .feature-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
